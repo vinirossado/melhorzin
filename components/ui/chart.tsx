@@ -2,8 +2,35 @@
 
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
+import { Line, Bar } from "react-chartjs-2"
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+  ChartOptions,
+} from "chart.js"
 
 import { cn } from "@/lib/utils"
+
+// Registrar os componentes do ChartJS
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+)
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const
@@ -353,6 +380,130 @@ function getPayloadConfigFromPayload(
   return configLabelKey in config
     ? config[configLabelKey]
     : config[key as keyof typeof config]
+}
+
+// Opções base para os gráficos
+const baseOptions: ChartOptions<"line" | "bar"> = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      backgroundColor: "hsl(var(--background))",
+      titleColor: "hsl(var(--foreground))",
+      bodyColor: "hsl(var(--foreground))",
+      borderColor: "hsl(var(--border))",
+      borderWidth: 1,
+      padding: 10,
+      boxPadding: 6,
+      usePointStyle: true,
+      bodyFont: {
+        family: "'Inter', sans-serif",
+        size: 13,
+      },
+      titleFont: {
+        family: "'Inter', sans-serif",
+        size: 14,
+        weight: "bold",
+      },
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      border: {
+        display: false,
+      },
+      ticks: {
+        color: "hsl(var(--muted-foreground))",
+        font: {
+          family: "'Inter', sans-serif",
+          size: 11,
+        },
+      },
+    },
+    y: {
+      grid: {
+        color: "hsl(var(--border))",
+        drawBorder: false,
+        lineWidth: 1,
+      },
+      border: {
+        display: false,
+      },
+      ticks: {
+        color: "hsl(var(--muted-foreground))",
+        font: {
+          family: "'Inter', sans-serif",
+          size: 11,
+        },
+        maxTicksLimit: 5,
+      },
+    },
+  },
+  interaction: {
+    intersect: false,
+    mode: "index",
+  },
+  animation: {
+    duration: 1000,
+  },
+}
+
+// Opções específicas para gráficos de linha
+const lineOptions: ChartOptions<"line"> = {
+  ...baseOptions,
+  elements: {
+    line: {
+      tension: 0.4,
+    },
+    point: {
+      radius: 2,
+      hitRadius: 6,
+      hoverRadius: 4,
+      hoverBorderWidth: 2,
+    },
+  },
+}
+
+// Opções específicas para gráficos de barra
+const barOptions: ChartOptions<"bar"> = {
+  ...baseOptions,
+  barPercentage: 0.7,
+  categoryPercentage: 0.7,
+}
+
+// Interface para o componente de gráficos
+interface ChartProps {
+  data: any
+  options?: ChartOptions<"line" | "bar">
+  className?: string
+}
+
+export function LineChart({ data, options, className }: ChartProps) {
+  // Mesclar opções personalizadas com as opções padrão
+  const chartOptions = { ...lineOptions, ...options }
+
+  return (
+    <div className={className}>
+      <Line data={data} options={chartOptions} />
+    </div>
+  )
+}
+
+export function BarChart({ data, options, className }: ChartProps) {
+  // Mesclar opções personalizadas com as opções padrão
+  const chartOptions = { ...barOptions, ...options }
+
+  return (
+    <div className={className}>
+      <Bar data={data} options={chartOptions} />
+    </div>
+  )
 }
 
 export {
