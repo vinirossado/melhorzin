@@ -187,7 +187,13 @@ export default function Home() {
 							size="icon"
 							className="h-8 w-8 text-gray-400 hover:text-white"
 						>
-							<Linkedin className="h-5 w-5" />
+							<Link
+								href="https://www.linkedin.com/in/gabrielraposoin/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Linkedin className="h-5 w-5" />
+							</Link>
 						</Button>
 						<Button
 							variant="ghost"
