@@ -69,18 +69,30 @@ function BackgroundStars() {
 
   const [geometry, material] = useMemo(() => {
     const geometry = new THREE.BufferGeometry();
-    const vertices = [];
+    const vertices: number[] = [];
+
+    // keep a clear area around the sun so we don't render tiny stars visually overlapping the sun
+    const minDistance = UNIVERSE_CONFIG.sun.size * 3;
 
     for (let i = 0; i < 10000; i++) {
-      vertices.push(
-        (Math.random() - 0.5) * 2000,
-        (Math.random() - 0.5) * 2000,
-        (Math.random() - 0.5) * 2000
-      );
+      let x = (Math.random() - 0.5) * 2000;
+      let y = (Math.random() - 0.5) * 2000;
+      let z = (Math.random() - 0.5) * 2000;
+
+      // re-roll a few times if inside the danger zone around the sun
+      let attempts = 0;
+      while (Math.sqrt(x * x + y * y + z * z) < minDistance && attempts < 8) {
+        x = (Math.random() - 0.5) * 2000;
+        y = (Math.random() - 0.5) * 2000;
+        z = (Math.random() - 0.5) * 2000;
+        attempts++;
+      }
+
+      vertices.push(x, y, z);
     }
 
     geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
-    
+
     const material = new THREE.PointsMaterial({
       color: 0xffffff,
       size: 0.5,
@@ -200,7 +212,7 @@ export default function Universe() {
           <color attach="background" args={["#000000"]} />
           <fog attach="fog" args={["#000000", 100, 400]} />
           <ambientLight intensity={0.2} />
-          <pointLight position={[0, 0, 0]} intensity={1.5} />
+          {/* Sun emits its own light inside <Sun />. Avoid adding another pointLight here so we don't get multiple suns/lights. */}
 
           <Stars
             radius={UNIVERSE_CONFIG.stars.radius}

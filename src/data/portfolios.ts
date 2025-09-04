@@ -71,19 +71,6 @@ export const portfolioData: Portfolio[] = [
     },
   },
   {
-    id: 6,
-    name: "Mathwz",
-    subdomain: "mathwz",
-    description: "Entusiasta de tecnologia que une criatividade e lógica em cada projeto.",
-    color: "#00CED1",
-    visible: true,
-    website: {
-      url: "https://mathwz.melhorzin.com",
-      technologies: ["Vue.js", "Laravel", "MySQL", "Redis"],
-      features: ["CMS Platform", "Real-time Analytics", "Content Management"],
-    },
-  },
-  {
     id: 7,
     name: "Michel",
     subdomain: "micode",
@@ -94,19 +81,6 @@ export const portfolioData: Portfolio[] = [
       url: "https://micode.melhorzin.com",
       technologies: ["Go", "Kubernetes", "Microservices", "gRPC"],
       features: ["Cloud Native Apps", "High Performance", "Scalable Systems"],
-    },
-  },
-  {
-    id: 8,
-    name: "Railsinho",
-    subdomain: "railsinho",
-    description: "Especialista em Rails que entrega soluções rápidas e escaláveis.",
-    color: "#9370DB",
-    visible: true,
-    website: {
-      url: "https://railsinho.melhorzin.com",
-      technologies: ["Ruby on Rails", "Hotwire", "PostgreSQL", "Sidekiq"],
-      features: ["SaaS Platform", "Background Jobs", "API Services"],
     },
   },
   {
@@ -175,19 +149,6 @@ export const portfolioData: Portfolio[] = [
     },
   },
   {
-    id: 14,
-    name: "Saron Lujan",
-    subdomain: "saronlujan",
-    description: "Desenvolvedora criativa com foco em experiência do usuário.",
-    color: "#FF69B4",
-    visible: true,
-    website: {
-      url: "https://saronlujan.melhorzin.com",
-      technologies: ["Figma", "React", "Framer Motion", "Storybook"],
-      features: ["Design System", "UI/UX Portfolio", "Interactive Components"],
-    },
-  },
-  {
     id: 15,
     name: "Vitor Lana",
     subdomain: "vitin",
@@ -202,7 +163,7 @@ export const portfolioData: Portfolio[] = [
   },
   {
     id: 16,
-    name: "Renata R. Silva",
+    name: "Maki",
     subdomain: "maki",
     description: "Desenvolvedora frontend especializada em animações e interações.",
     color: "#BA55D3",
