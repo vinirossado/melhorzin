@@ -8,70 +8,68 @@ import { useLanguage } from "@/components/language-provider"
 const experiences = [
   {
     id: 1,
-    title: "Senior Software Engineer",
-    company: "Riverty",
-    companyUrl: "https://riverty.com",
-    location: "Tallinn, Estonia",
-    period: "2022 - Presente",
-    description:
-      "Desenvolvimento de aplicações web com React e Next.js. Implementação de design systems e otimização de performance.",
+    titleKey: "exp1Title",
+    companyKey: "exp1Company",
+    companyUrlKey: "exp1CompanyUrl",
+    locationKey: "exp1Location",
+    periodKey: "exp1Period",
+    descriptionKey: "exp1Description",
     featured: true,
     technologies: ["C#", ".Net", "TypeScript", "Ionic", "StencilJS", "Azure"],
   },
   {
     id: 2,
-    title: "Software Engineer",
-    company: "Arvato Financial Solutions Tech Center",
-    companyUrl: "https://arvato.com",
-    location: "Tallinn, Estonia",
-    period: "2022 - 2022",
-    description:
-      "Desenvolvimento de aplicações web com React e Next.js. Implementação de design systems e otimização de performance.",
+    titleKey: "exp2Title",
+    companyKey: "exp2Company",
+    companyUrlKey: "exp2CompanyUrl",
+    locationKey: "exp2Location",
+    periodKey: "exp2Period",
+    descriptionKey: "exp2Description",
     technologies: ["C#", ".Net", "TypeScript", "Ionic", "StencilJS", "Azure"],
   },
   {
     id: 3,
-    title: "Full Stack Developer",
-    company: "MAGIT IT PARTNER",
-    location: "Ribeirão Preto, Brasil",
-    period: "2020 - 2022",
-    description: "Desenvolvimento de sites responsivos e landing pages para clientes de diversos setores.",
+    titleKey: "exp3Title",
+    companyKey: "exp3Company",
+    locationKey: "exp3Location",
+    periodKey: "exp3Period",
+    descriptionKey: "exp3Description",
     technologies: ["C#", ".NET", "Angular", "React Native", "Oracle", "SQL Server", "MongoDB"],
   },
   {
     id: 4,
-    title: "Full Stack Developer",
-    company: "GooWe",
-    location: "Ribeirão Preto, Brasil",
-    period: "2019 - 2020",
-    description: "Desenvolvimento de sites responsivos e landing pages para clientes de diversos setores.",
+    titleKey: "exp4Title",
+    companyKey: "exp4Company",
+    locationKey: "exp4Location",
+    periodKey: "exp4Period",
+    descriptionKey: "exp4Description",
     technologies: ["C#", "Elixir", ".NET", "Angular", "Flutter", "SQL Server", "MongoDB"],
   },
   {
     id: 5,
-    title: "Full Stack Developer",
-    company: "Kezz IT",
-    location: "Ribeirão Preto, Brasil",
-    period: "2019 - 2019",
-    description: "Desenvolvimento de sites responsivos e landing pages para clientes de diversos setores.",
+    titleKey: "exp5Title",
+    companyKey: "exp5Company",
+    locationKey: "exp5Location",
+    periodKey: "exp5Period",
+    descriptionKey: "exp5Description",
     technologies: ["C#", ".NET", "Angular", "SQL Server"],
   },
   {
     id: 6,
-    title: "Full Stack Developer",
-    company: "Onsoft Web",
-    location: "Ribeirão Preto, Brasil",
-    period: "2018 - 2019",
-    description: "Desenvolvimento de sites responsivos e landing pages para clientes de diversos setores.",
+    titleKey: "exp6Title",
+    companyKey: "exp6Company",
+    locationKey: "exp6Location",
+    periodKey: "exp6Period",
+    descriptionKey: "exp6Description",
     technologies: ["C#", ".NET", "Angular", "Xamarin", "SQL Server"],
   },
   {
     id: 7,
-    title: "Web Freelancer",
-    company: "Freelance",
-    location: "Ribeirão Preto, Brasil",
-    period: "2018 - 2019",
-    description: "Desenvolvimento de sites responsivos e landing pages para clientes de diversos setores.",
+    titleKey: "exp7Title",
+    companyKey: "exp7Company",
+    locationKey: "exp7Location",
+    periodKey: "exp7Period",
+    descriptionKey: "exp7Description",
     technologies: ["Ruby", "Ruby on Rails", "Angular", "SQL Server"],
   },
 ]
@@ -185,17 +183,21 @@ export default function Experience() {
                       <Briefcase className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-slate-800 dark:text-white">{exp.title}</h3>
+                      <h3 className="text-xl font-bold text-slate-800 dark:text-white">{t(exp.titleKey)}</h3>
                       <div className="flex items-center mt-1">
-                        <a
-                          href={exp.companyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-lg font-medium text-blue-600 dark:text-orange-500 hover:text-blue-700 dark:hover:text-orange-400 transition-colors flex items-center"
-                        >
-                          {exp.company}
-                          <ExternalLink size={14} className="ml-1.5 opacity-70" />
-                        </a>
+                        {exp.companyUrlKey ? (
+                          <a
+                            href={t(exp.companyUrlKey)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-lg font-medium text-blue-600 dark:text-orange-500 hover:text-blue-700 dark:hover:text-orange-400 transition-colors flex items-center"
+                          >
+                            {t(exp.companyKey)}
+                            <ExternalLink size={14} className="ml-1.5 opacity-70" />
+                          </a>
+                        ) : (
+                          <span className="text-lg font-medium text-blue-600 dark:text-orange-500">{t(exp.companyKey)}</span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -203,17 +205,17 @@ export default function Experience() {
                   <div className="flex flex-col sm:flex-row gap-3 text-sm text-slate-500 dark:text-slate-400">
                     <div className="flex items-center gap-1.5">
                       <Calendar size={16} className="text-slate-400 dark:text-slate-500" />
-                      <span>{exp.period}</span>
+                      <span>{t(exp.periodKey)}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <MapPin size={16} className="text-slate-400 dark:text-slate-500" />
-                      <span>{exp.location}</span>
+                      <span>{t(exp.locationKey)}</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-4">
-                  <p className="text-slate-600 dark:text-slate-400">{exp.description}</p>
+                  <p className="text-slate-600 dark:text-slate-400">{t(exp.descriptionKey)}</p>
                 </div>
 
                 {/* Technologies */}
@@ -263,10 +265,10 @@ export default function Experience() {
                   <div className="pt-4 border-t border-slate-100">
                     <h4 className="font-medium text-slate-800 mb-3">{t("responsibilities")}</h4>
                     <ul className="space-y-2 text-sm text-slate-600 list-disc pl-5">
-                      <li>Desenvolvimento e manutenção de aplicações web utilizando tecnologias modernas</li>
-                      <li>Colaboração com equipes multidisciplinares para entregar soluções de alta qualidade</li>
-                      <li>Implementação de boas práticas de desenvolvimento e padrões de código</li>
-                      <li>Participação em code reviews e sessões de pair programming</li>
+                      <li>{t("expWebDevelopment")}</li>
+                      <li>{t("expTeamCollaboration")}</li>
+                      <li>{t("expBestPractices")}</li>
+                      <li>{t("expCodeReview")}</li>
                     </ul>
                   </div>
                 </motion.div>

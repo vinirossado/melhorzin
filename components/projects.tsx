@@ -10,87 +10,92 @@ import { useLanguage } from "@/components/language-provider"
 const projects = [
   {
     id: crypto.randomUUID(),
-    title: "URL-Shortener",
-    description: "Plataforma para encurtar URLS sendo capaz de suportar um grade volume de dados, tendo sido feito deploy na Azure.",
+    titleKey: "projectUrlShortenerTitle",
+    descriptionKey: "projectUrlShortenerDescription",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["C#", ".Net", "CosmosDB", "Azure", "Bicep", "PostgreSQL"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/URL-Shortener",
-    features: [
-      "Geração de URLs curtas",
-      "Redirecionamento de URLs",
-      "Estatísticas de acesso",
-      "Observabilidade",
+    featureKeys: [
+      "projectUrlShortenerFeature1",
+      "projectUrlShortenerFeature2",
+      "projectUrlShortenerFeature3",
+      "projectUrlShortenerFeature4",
     ],
   },
   {
     id: crypto.randomUUID(),
-    title: "GCLI",
-    description: "CLI em Golang para criação de projetos projetos em Golang, ja contendo uma estrutura robusta e pronta para producao.",
+    titleKey: "projectGcliTitle",
+    descriptionKey: "projectGcliDescription",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["Golang", "PostgreSQL", "Mustache", "Cobra", "Gorm", "Docker"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/gcli",
-    features: [
-      "Criação de projetos em Golang com multiplos templates",
-      "Geração de CRUDs de formas simplificadas",
-      "Servidor de Migration com Hot Reload",
-      "Dockerização do projeto",
-      "Pronto para produção",
+    featureKeys: [
+      "projectGcliFeature1",
+      "projectGcliFeature2",
+      "projectGcliFeature3",
+      "projectGcliFeature4",
+      "projectGcliFeature5",
     ],
   },
   {
     id: crypto.randomUUID(),
-    title: "MTG Card Inventory",
-    description: "Aplicativo para gerenciamento de inventário e decks de cartas de Magic The Gathering.",
+    titleKey: "projectMtgCardInventoryTitle",
+    descriptionKey: "projectMtgCardInventoryDescription",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["SwiftUI", "Swift", "PostgreSQL", ".Net"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/MTG-Card-Inventory",
-    features: [
-      "Listagem de cartas catalogadas com filtros avançados",
-      "Criação de decks personalizados",
-      "Sincronização com banco de dados remoto",
+    featureKeys: [
+      "projectMtgCardInventoryFeature1",
+      "projectMtgCardInventoryFeature2",
+      "projectMtgCardInventoryFeature3",
     ],
   },
   {
     id: crypto.randomUUID(),
-    title: "MTG Life Counter",
-    description: "Aplicativo para gerenciamento de vida e histórico de partidas de Magic The Gathering.",
+    titleKey: "projectMtgLifeCounterTitle",
+    descriptionKey: "projectMtgLifeCounterDescription",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["SwiftUI", "Swift", "PostgreSQL", ".Net"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/MTG-LifeCounter",
-    features: [
-      "Contador de vida para até 6 jogadores",
-      "Histórico de partidas",
-      "Sincronização com banco de dados remoto",
+    featureKeys: [
+      "projectMtgLifeCounterFeature1",
+      "projectMtgLifeCounterFeature2",
+      "projectMtgLifeCounterFeature3",
     ],
   },
   {
     id: crypto.randomUUID(),
-    title: "GCLI Advanced Template",
-    description: "Template avançado para o GCLI, contendo autenticação, autorização, testes e documentação.",
+    titleKey: "projectGcliAdvancedTemplateTitle",
+    descriptionKey: "projectGcliAdvancedTemplateDescription",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["Go", "Gorm", "Zap", "Swagger", "JWT", "Docker"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/gcli-advanced-template",
-    features: [
-      "Autenticação e autorização",
-      "Testes unitários e de integração",
-      "Documentação com Swagger",
-      "Dockerização",
+    featureKeys: [
+      "projectGcliAdvancedTemplateFeature1",
+      "projectGcliAdvancedTemplateFeature2",
+      "projectGcliAdvancedTemplateFeature3",
+      "projectGcliAdvancedTemplateFeature4",
     ],
   },
   {
     id: crypto.randomUUID(),
-    title: "Portfolio Website",
-    description: "Site de portfolio responsivo com animações suaves e design moderno.",
+    titleKey: "projectPortfolioWebsiteTitle",
+    descriptionKey: "projectPortfolioWebsiteDescription",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["Next.Js", "React", "Framer Motion", "Tailwind CSS"],
     liveUrl: "rossado.melhorzin.com",
     githubUrl: "#",
-    features: ["Animações suaves", "Design responsivo", "Modo escuro", "Formulário de contato"],
+    featureKeys: [
+      "projectPortfolioWebsiteFeature1",
+      "projectPortfolioWebsiteFeature2",
+      "projectPortfolioWebsiteFeature3",
+      "projectPortfolioWebsiteFeature4",
+    ],
   },
 ]
 
@@ -102,7 +107,6 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-20 px-4 md:px-8 bg-gradient-to-b from-white dark:from-slate-900 to-blue-50 dark:to-slate-800 relative">
-
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4 text-center"
@@ -143,7 +147,7 @@ export default function Projects() {
 
                 <img
                   src={project.image || "/placeholder.svg"}
-                  alt={project.title}
+                  alt={t(project.titleKey)}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
@@ -192,7 +196,7 @@ export default function Projects() {
                     rel="noopener noreferrer"
                   >
                     <ExternalLink size={14} />
-                    <span>Live Demo</span>
+                    <span>{t("liveDemo")}</span>
                   </a>
                   <a
                     href={project.githubUrl}
@@ -201,16 +205,16 @@ export default function Projects() {
                     rel="noopener noreferrer"
                   >
                     <Github size={14} />
-                    <span>GitHub</span>
+                    <span>{t("github")}</span>
                   </a>
                 </div>
               </div>
 
               <div className="p-6">
                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-orange-500 transition-colors">
-                  {project.title}
+                  {t(project.titleKey)}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">{project.description}</p>
+                <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">{t(project.descriptionKey)}</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
@@ -224,10 +228,10 @@ export default function Projects() {
                 <div className="mt-4 space-y-2">
                   <h4 className="text-sm font-medium text-slate-700 dark:text-slate-700">{t("mainFeatures")}</h4>
                   <ul className="grid grid-cols-2 gap-x-2 gap-y-1">
-                    {project.features.map((feature, i) => (
+                    {project.featureKeys.map((featureKey, i) => (
                       <li key={i} className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-orange-500"></div>
-                        <span>{feature}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-orange-500 shrink-0"></div>
+                        <span>{t(featureKey)}</span>
                       </li>
                     ))}
                   </ul>

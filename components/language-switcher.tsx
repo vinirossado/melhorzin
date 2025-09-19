@@ -5,14 +5,14 @@ import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 
 export default function LanguageSwitcher() {
-  const { language, setLanguage } = useLanguage()
+  const { language, setLanguage, t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
 
   const languages = [
-    { code: "pt", label: "PT", name: "Português" },
-    { code: "en", label: "EN", name: "English" },
-    { code: "ru", label: "RU", name: "Русский" },
-    { code: "et", label: "ET", name: "Eesti" },
+    { code: "pt", label: "PT", name: t("Portuguese") },
+    { code: "en", label: "EN", name: t("English") },
+    { code: "ru", label: "RU", name: t("Russian") },
+    { code: "et", label: "ET", name: t("Estonian") },
   ]
 
   const currentLanguage = languages.find((lang) => lang.code === language)

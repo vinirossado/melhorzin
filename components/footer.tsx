@@ -1,7 +1,11 @@
+"use client"
+
 import { Github, Linkedin, Twitter, Instagram } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const { t } = useLanguage()
 
   return (
     <footer className="py-10 px-4 md:px-8 bg-slate-100 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700">
@@ -9,7 +13,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h3 className="text-xl font-bold text-slate-800 dark:text-white">Vinicius Rossado</h3>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">Senior Software Engineer</p>
+            <p className="text-slate-600 dark:text-slate-400 mt-1">{t("fullstackDev")}</p>
           </div>
 
           <div className="flex gap-4">
@@ -46,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-200 mt-8 pt-8 text-center text-slate-500 text-sm">
-          <p>&copy; {currentYear} Vinicius Rossado. Todos os direitos reservados.</p>
+          <p>&copy; {currentYear} Vinicius Rossado. {t("footerRights")}</p>
         </div>
       </div>
     </footer>

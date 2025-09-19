@@ -14,22 +14,22 @@ export default function About() {
     {
       icon: <Code className="w-5 h-5" />,
       title: t("frontendDev"),
-      description: "Criação de interfaces modernas e responsivas com React, Next.js e Tailwind CSS.",
+      description: t("aboutServiceFrontend"),
     },
     {
       icon: <Server className="w-5 h-5" />,
       title: t("backendDev"),
-      description: "Construção de APIs robustas e escaláveis com Node.js, Express e TypeScript.",
+      description: t("aboutServiceBackend"),
     },
     {
       icon: <Database className="w-5 h-5" />,
       title: t("database"),
-      description: "Modelagem e otimização de bancos de dados SQL e NoSQL.",
+      description: t("aboutServiceDatabase"),
     },
     {
       icon: <Globe className="w-5 h-5" />,
       title: t("fullWebApps"),
-      description: "Desenvolvimento full-stack de aplicações web de ponta a ponta.",
+      description: t("aboutServiceFullWebApps"),
     },
   ]
 
@@ -106,15 +106,9 @@ export default function About() {
             <h3 className="text-2xl font-bold text-slate-800 dark:text-white">{t("transformingIdeas")}</h3>
 
             <div className="space-y-4 text-slate-700 dark:text-slate-300">
-              <p className="text-lg">
-                Olá! Sou um desenvolvedor FullStack apaixonado por criar soluções web elegantes e funcionais.
-              </p>
-              <p>
-                Hi, I'm Vinicius. Currently working with Stencil and .NET Core at a financial company. One of my favorite things to do on my free time (besides playing the guitar) is to build new architectures in order to challenge myself with new development patterns. Besides, one of my hobbies includes learning new stacks, for instance, right now I'm quite interested in Golang.
-              </p>
-              <p>
-                For the past few years I've also been interested in learning new languages and cultures, specially the nordic ones. You can reach me at my e-mail, if you want to see my personal projects, check out projects section.
-              </p>
+              <p className="text-lg">{t("aboutIntro1")}</p>
+              <p>{t("aboutIntro2")}</p>
+              <p>{t("aboutIntro3")}</p>
             </div>
 
             <div className="pt-4 flex flex-wrap gap-4">

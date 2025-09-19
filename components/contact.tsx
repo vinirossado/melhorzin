@@ -30,7 +30,7 @@ export default function Contact() {
     e.preventDefault()
     // Aqui você implementaria a lógica para enviar o formulário
     console.log(formState)
-    alert("Mensagem enviada com sucesso!")
+  alert(t("contactSuccess"))
     setFormState({ name: "", email: "", message: "" })
   }
 

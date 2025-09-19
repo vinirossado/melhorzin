@@ -8,113 +8,113 @@ import { useLanguage } from "@/components/language-provider"
 import { GithubRepository } from "@/models/github-repository"
 
 interface Skill {
-  name: string
+  nameKey: string
   year: number
   icon: React.ReactNode
-  category: string
-  description: string
+  categoryKey: string
+  descriptionKey: string
 }
 
 const yearsOfExperience = new Date().getFullYear() - 2017
 
 const skills: Skill[] = [
   {
-    name: "C#",
+    nameKey: "skillCSharpName",
     year: yearsOfExperience,
     icon: <Code className="w-6 h-6" />,
-    category: "Linguagens",
-    description: "Desenvolvimento de APIs RESTful escaláveis, arquitetura limpa e design patterns em .NET.",
+    categoryKey: "skillCSharpCategory",
+    descriptionKey: "skillCSharpDescription",
   },
   {
-    name: "Go",
+    nameKey: "skillGoName",
     year: yearsOfExperience - 5,
     icon: <Code className="w-6 h-6" />,
-    category: "Linguagens",
-    description: "Criação de serviços backend de alta performance e concorrência eficiente.",
+    categoryKey: "skillGoCategory",
+    descriptionKey: "skillGoDescription",
   },
   {
-    name: "TypeScript",
+    nameKey: "skillTypeScriptName",
     year: yearsOfExperience,
     icon: <Code className="w-6 h-6" />,
-    category: "Linguagens",
-    description: "Desenvolvimento front e backend com tipagem segura e escalabilidade.",
+    categoryKey: "skillTypeScriptCategory",
+    descriptionKey: "skillTypeScriptDescription",
   },
   {
-    name: "Angular",
+    nameKey: "skillAngularName",
     year: yearsOfExperience,
     icon: <Layers className="w-6 h-6" />,
-    category: "Frontend",
-    description: "Criação de aplicações SPA modulares e performáticas com RxJS e state management.",
+    categoryKey: "skillAngularCategory",
+    descriptionKey: "skillAngularDescription",
   },
   {
-    name: "Ionic",
+    nameKey: "skillIonicName",
     year: yearsOfExperience - 5,
     icon: <Smartphone className="w-6 h-6" />,
-    category: "Mobile",
-    description: "Desenvolvimento de apps híbridos com Angular e Capacitor para iOS e Android.",
+    categoryKey: "skillIonicCategory",
+    descriptionKey: "skillIonicDescription",
   },
   {
-    name: "SwiftUI",
+    nameKey: "skillSwiftUIName",
     year: yearsOfExperience - 7.5,
     icon: <Smartphone className="w-6 h-6" />,
-    category: "Mobile",
-    description: "Criação de interfaces fluidas e reativas para iOS com SwiftUI e Combine.",
+    categoryKey: "skillSwiftUICategory",
+    descriptionKey: "skillSwiftUIDescription",
   },
   {
-    name: "StencilJS",
+    nameKey: "skillStencilJSName",
     year: yearsOfExperience - 5,
     icon: <Layers className="w-6 h-6" />,
-    category: "Frontend",
-    description: "Criação de Web Components reutilizáveis e performáticos para aplicações escaláveis.",
+    categoryKey: "skillStencilJSCategory",
+    descriptionKey: "skillStencilJSDescription",
   },
   {
-    name: "MongoDB",
+    nameKey: "skillMongoDBName",
     year: yearsOfExperience - 5,
     icon: <Database className="w-6 h-6" />,
-    category: "Banco de Dados",
-    description: "Modelagem e otimização de consultas em bancos NoSQL para alta escalabilidade.",
+    categoryKey: "skillMongoDBCategory",
+    descriptionKey: "skillMongoDBDescription",
   },
   {
-    name: "SQLServer",
+    nameKey: "skillSQLServerName",
     year: yearsOfExperience - 2,
     icon: <Database className="w-6 h-6" />,
-    category: "Banco de Dados",
-    description: "Administração de bancos SQL, otimização de queries e procedures.",
+    categoryKey: "skillSQLServerCategory",
+    descriptionKey: "skillSQLServerDescription",
   },
   {
-    name: "Oracle",
+    nameKey: "skillOracleName",
     year: yearsOfExperience - 6,
     icon: <Database className="w-6 h-6" />,
-    category: "Banco de Dados",
-    description: "Gerenciamento de grandes volumes de dados e PL/SQL para automação.",
+    categoryKey: "skillOracleCategory",
+    descriptionKey: "skillOracleDescription",
   },
   {
-    name: "Docker",
+    nameKey: "skillDockerName",
     year: yearsOfExperience - 4,
     icon: <Cloud className="w-6 h-6" />,
-    category: "DevOps",
-    description: "Criação e orquestração de contêineres para ambientes escaláveis e isolados.",
+    categoryKey: "skillDockerCategory",
+    descriptionKey: "skillDockerDescription",
   },
   {
-    name: "Kubernetes",
+    nameKey: "skillKubernetesName",
     year: yearsOfExperience - 7,
     icon: <Cloud className="w-6 h-6" />,
-    category: "DevOps",
-    description: "Orquestração de contêineres, autoescalabilidade e deploys resilientes.",
+    categoryKey: "skillKubernetesCategory",
+    descriptionKey: "skillKubernetesDescription",
   },
   {
-    name: "Bicep",
+    nameKey: "skillBicepName",
     year: yearsOfExperience - 7.5,
     icon: <Cloud className="w-6 h-6" />,
-    category: "DevOps",
-    description: "Infraestrutura como código para provisionamento automatizado no Azure.",
+    categoryKey: "skillBicepCategory",
+    descriptionKey: "skillBicepDescription",
   },
   {
-    name: "Terraform",
+    nameKey: "skillTerraformName",
     year: yearsOfExperience - 6,
     icon: <Cloud className="w-6 h-6" />,
-    category: "DevOps",
-    description: "Automação de infraestrutura multi-cloud e gerenciamento de estado.",
+    categoryKey: "skillTerraformCategory",
+    descriptionKey: "skillTerraformDescription",
   },
 ]
 
@@ -127,9 +127,20 @@ export default function Skills() {
   const [isLoading, setIsLoading] = useState(false)
 
   const { t } = useLanguage()
+  // Helper functions for translation
+  function getSkillName(skill: Skill) {
+    return t(skill.nameKey)
+  }
+  function getSkillCategory(skill: Skill) {
+    return t(skill.categoryKey)
+  }
+  function getSkillDescription(skill: Skill) {
+    return t(skill.descriptionKey)
+  }
+
   useEffect(() => {
     const fetchRepos = async () => {
-      if (activeSkill?.category === "Linguagens") {
+      if (activeSkill && getSkillCategory(activeSkill) === t("skillCSharpCategory")) {
         setIsLoading(true)
         try {
           const response = await fetch(`https://api.github.com/users/vinirossado/repos?sort=updated&per_page=100`)
@@ -145,19 +156,19 @@ export default function Skills() {
         setRepos([])
       }
     }
-
     fetchRepos()
   }, [activeSkill])
 
-  const filteredRepos = repos.filter((repo) => repo.language === activeSkill?.name)
+  const filteredRepos = repos.filter((repo) => repo.language === (activeSkill ? getSkillName(activeSkill) : undefined))
 
   // Agrupar habilidades por categoria
   const categories = skills.reduce(
     (acc: Record<string, Skill[]>, skill: Skill) => {
-      if (!acc[skill.category]) {
-        acc[skill.category] = []
+      const category = getSkillCategory(skill)
+      if (!acc[category]) {
+        acc[category] = []
       }
-      acc[skill.category].push(skill)
+      acc[category].push(skill)
       return acc
     },
     {} as Record<string, Skill[]>,
@@ -196,7 +207,7 @@ export default function Skills() {
             {skills.sort((a, b) => b.year - a.year)
               .map((skill, index) => (
                 <motion.div
-                  key={skill.name}
+                  key={skill.nameKey}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.1, delay: isLoaded ? 0 : 0.1 * index }}
@@ -223,14 +234,14 @@ export default function Skills() {
                       {skill.icon}
                     </div>
 
-                    <h3 className="font-bold
-                       text-slate-800 dark:text-white
-                       mb-1">{skill.name}</h3>
-                    <div className="text-xs
-                     text-slate-500 dark:text-slate-400
-                      mb-3">
-                      {skill.category}
-                    </div>
+              <h3 className="font-bold
+                text-slate-800 dark:text-white
+                mb-1">{getSkillName(skill)}</h3>
+              <div className="text-xs
+              text-slate-500 dark:text-slate-400
+               mb-3">
+               {getSkillCategory(skill)}
+              </div>
 
                     <div className="mt-auto pt-3 w-full">
                       <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
@@ -271,7 +282,7 @@ export default function Skills() {
             </h3>
             {activeSkill ? (
               <motion.div
-                key={activeSkill.name}
+                key={activeSkill.nameKey}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
@@ -284,8 +295,8 @@ export default function Skills() {
                     {activeSkill.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-800 dark:text-white">{activeSkill.name}</h4>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">{activeSkill.category}</div>
+                    <h4 className="font-bold text-slate-800 dark:text-white">{getSkillName(activeSkill)}</h4>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">{getSkillCategory(activeSkill)}</div>
                   </div>
                 </div>
 
@@ -305,10 +316,10 @@ export default function Skills() {
 
                 <div>
                   <div className="text-sm text-slate-600 dark:text-slate-400 mb-1">{t("description")}</div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300">{activeSkill.description}</p>
+                  <p className="text-sm text-slate-700 dark:text-slate-300">{getSkillDescription(activeSkill)}</p>
                 </div>
 
-                {activeSkill.category === "Linguagens" && (
+                {getSkillCategory(activeSkill) === t("skillCSharpCategory") && (
                   <div className="mt-4">
                     <h5 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 flex items-center justify-between">
                       <span>
@@ -316,12 +327,12 @@ export default function Skills() {
                       </span>
                       {filteredRepos.length > 0 && (
                         <a
-                          href={`https://github.com/vinirossado?tab=repositories&q=&language=${activeSkill.name}`}
+                          href={`https://github.com/vinirossado?tab=repositories&q=&language=${getSkillName(activeSkill)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs text-blue-600 hover:underline flex items-center"
                         >
-                          Ver todos <ExternalLink size={12} className="ml-1" />
+                          {t("seeAll")} <ExternalLink size={12} className="ml-1" />
                         </a>
                       )}
                     </h5>
@@ -377,7 +388,7 @@ export default function Skills() {
                               <div className="mt-2 flex items-center justify-between text-xs">
                                 <div className="flex items-center">
                                   <div className="w-2 h-2 rounded-full bg-blue-500 mr-1.5"></div>
-                                  <span className="text-slate-600">{repo.language || activeSkill.name}</span>
+                                  <span className="text-slate-600">{repo.language || getSkillName(activeSkill)}</span>
                                 </div>
                                 <span className="text-slate-500 text-[10px]">
                                   {new Date(repo.updated_at).toLocaleDateString(undefined, {
@@ -393,12 +404,12 @@ export default function Skills() {
 
                         {filteredRepos.length > 5 && (
                           <a
-                            href={`https://github.com/vinirossado?tab=repositories&q=&language=${activeSkill.name}`}
+                            href={`https://github.com/vinirossado?tab=repositories&q=&language=${getSkillName(activeSkill)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block text-center text-xs text-blue-600 hover:text-blue-800 py-2 bg-blue-50 rounded-md border border-blue-100 hover:bg-blue-100 transition-colors"
                           >
-                            Ver mais {filteredRepos.length - 5} repositórios
+                            {t("seeMoreRepos").replace("{count}", String(filteredRepos.length - 5))}
                           </a>
                         )}
                       </div>
@@ -411,7 +422,7 @@ export default function Skills() {
                           rel="noopener noreferrer"
                           className="inline-block mt-2 text-xs text-blue-600 hover:underline"
                         >
-                          Ver todos os repositórios
+                          {t("seeAllRepos")}
                         </a>
                       </div>
                     )}
@@ -438,14 +449,14 @@ export default function Skills() {
               <h3 className="font-bold text-slate-800  dark:text-white mb-3">{category}</h3>
               <div className="space-y-2">
                 {categorySkills.map((skill) => (
-                  <div key={skill.name} className="flex items-center justify-between">
+                  <div key={skill.nameKey} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                     <div className="mb-3 p-3 rounded-full
                      bg-blue-100/50 dark:bg-slate-700/50
                      text-blue-600 dark:text-orange-500">
                       {skill.icon}
                     </div>
-                      <span className="text-sm text-slate-700 dark:text-slate-300">{skill.name}</span>
+                      <span className="text-sm text-slate-700 dark:text-slate-300">{getSkillName(skill)}</span>
                     </div>
                     
                     <span className="text-xs font-medium px-2 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-orange-400 rounded-full">
