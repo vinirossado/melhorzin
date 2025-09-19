@@ -119,7 +119,7 @@ export default function Projects() {
         </motion.h2>
 
         <motion.p
-          className="text-slate-600 dark:text-slate-400 text-center max-w-2xl mx-auto mb-12"
+          className="text-slate-600 dark:text-slate-200 text-center max-w-2xl mx-auto mb-12"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -214,7 +214,7 @@ export default function Projects() {
                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-orange-500 transition-colors">
                   {t(project.titleKey)}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">{t(project.descriptionKey)}</p>
+                <p className="text-slate-600 dark:text-slate-200 mb-4 text-sm">{t(project.descriptionKey)}</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
@@ -226,10 +226,10 @@ export default function Projects() {
 
                 {/* Features list */}
                 <div className="mt-4 space-y-2">
-                  <h4 className="text-sm font-medium text-slate-700 dark:text-slate-700">{t("mainFeatures")}</h4>
+                  <h4 className="text-sm font-medium text-slate-700 dark:text-slate-100">{t("mainFeatures")}</h4>
                   <ul className="grid grid-cols-2 gap-x-2 gap-y-1">
                     {project.featureKeys.map((featureKey, i) => (
-                      <li key={i} className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1">
+                      <li key={i} className="text-xs text-slate-600 dark:text-slate-300 flex items-center gap-1">
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-orange-500 shrink-0"></div>
                         <span>{t(featureKey)}</span>
                       </li>

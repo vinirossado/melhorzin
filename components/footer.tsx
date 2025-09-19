@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h3 className="text-xl font-bold text-slate-800 dark:text-white">Vinicius Rossado</h3>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">{t("fullstackDev")}</p>
+            <p className="text-slate-600 dark:text-slate-200 mt-1">{t("fullstackDev")}</p>
           </div>
 
           <div className="flex gap-4">

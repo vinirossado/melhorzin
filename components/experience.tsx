@@ -158,7 +158,7 @@ export default function Experience() {
             {t("careerJourney")}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white">{t("professionalExperience")}</h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{t("experienceDescription")}</p>
+          <p className="mt-4 text-slate-600 dark:text-slate-200 max-w-2xl mx-auto">{t("experienceDescription")}</p>
         </motion.div>
 
         <div className="space-y-8">
@@ -168,7 +168,7 @@ export default function Experience() {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 * index }}
-              className={`bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border ${exp.featured ? "border-blue-200 dark:border-orange-900/50" : "border-slate-200 dark:border-slate-700"}`}
+              className={`bg-white dark:bg-slate-800/95 rounded-xl shadow-md overflow-hidden border ${exp.featured ? "border-blue-200 dark:border-orange-900/50" : "border-slate-200 dark:border-slate-700"}`}
             >
               {/* Experience header */}
               <div className={`p-6 ${exp.featured ? "bg-gradient-to-r from-blue-50 to-white dark:from-slate-800 dark:to-slate-800" : ""}`}>
@@ -202,7 +202,7 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-3 text-sm text-slate-500 dark:text-slate-400">
+                  <div className="flex flex-col sm:flex-row gap-3 text-sm text-slate-500 dark:text-slate-200">
                     <div className="flex items-center gap-1.5">
                       <Calendar size={16} className="text-slate-400 dark:text-slate-500" />
                       <span>{t(exp.periodKey)}</span>
@@ -215,7 +215,7 @@ export default function Experience() {
                 </div>
 
                 <div className="mt-4">
-                  <p className="text-slate-600 dark:text-slate-400">{t(exp.descriptionKey)}</p>
+                  <p className="text-slate-600 dark:text-slate-200">{t(exp.descriptionKey)}</p>
                 </div>
 
                 {/* Technologies */}
@@ -260,11 +260,11 @@ export default function Experience() {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className={`px-6 pb-6 ${exp.featured ? "bg-gradient-to-r from-blue-50 to-white" : ""}`}
+                  className={`px-6 pb-6 ${exp.featured ? "bg-gradient-to-r from-blue-50 to-white dark:from-slate-800 dark:to-slate-800" : "dark:bg-slate-800"}`}
                 >
-                  <div className="pt-4 border-t border-slate-100">
-                    <h4 className="font-medium text-slate-800 mb-3">{t("responsibilities")}</h4>
-                    <ul className="space-y-2 text-sm text-slate-600 list-disc pl-5">
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-700">
+                    <h4 className="font-medium text-slate-800 dark:text-white mb-3">{t("responsibilities")}</h4>
+                    <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5">
                       <li>{t("expWebDevelopment")}</li>
                       <li>{t("expTeamCollaboration")}</li>
                       <li>{t("expBestPractices")}</li>

@@ -152,7 +152,7 @@ export default function About() {
                 </div>
 
                 <h3 className="font-bold text-slate-800 dark:text-white mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 flex-grow">{service.description}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-200 flex-grow">{service.description}</p>
 
                 <div className="mt-4 h-0.5 w-12 bg-blue-200 dark:bg-orange-700 group-hover:w-full transition-all duration-300"></div>
               </div>

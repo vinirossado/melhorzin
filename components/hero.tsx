@@ -109,7 +109,7 @@ export default function Hero({ name, title, photoUrl, yearsOfExperience = 7 }: H
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -166,15 +166,15 @@ export default function Hero({ name, title, photoUrl, yearsOfExperience = 7 }: H
             ))}
           </motion.div>
 
-          <motion.div
+                    <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-0"
           >
             <a
               href="#about"
-              className="px-6 py-3 bg-white/10 hover:bg-white/20 dark:bg-orange-500/10 dark:hover:bg-orange-500/20 text-white border border-white/30 dark:border-orange-500/30 backdrop-blur-sm rounded-full font-medium transition-all"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 dark:bg-orange-500/10 dark:hover:bg-orange-500/20 text-white border border-white/30 dark:border-orange-500/30 backdrop-blur-sm rounded-full font-medium transition-all text-sm sm:text-base text-center"
             >
               {t("viewWork")}
             </a>
@@ -182,7 +182,7 @@ export default function Hero({ name, title, photoUrl, yearsOfExperience = 7 }: H
               href="https://www.linkedin.com/in/viniciusrossado/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-blue-600/90 hover:bg-blue-600 dark:bg-orange-500/90 dark:hover:bg-orange-500 text-white rounded-full font-medium transition-all shadow-lg shadow-blue-500/20 dark:shadow-orange-500/20 hover:shadow-blue-500/40 dark:hover:shadow-orange-500/40"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-blue-600/90 hover:bg-blue-600 dark:bg-orange-500/90 dark:hover:bg-orange-500 text-white rounded-full font-medium transition-all shadow-lg shadow-blue-500/20 dark:shadow-orange-500/20 hover:shadow-blue-500/40 dark:hover:shadow-orange-500/40 text-sm sm:text-base text-center"
             >
               {t("contactMe")}
             </a>
@@ -194,31 +194,33 @@ export default function Hero({ name, title, photoUrl, yearsOfExperience = 7 }: H
       </div>
 
       {/* Tech stack badges */}
-      <div className="absolute bottom-20 left-0 right-0 z-20 flex justify-center">
+            {/* Tech stack badges */}
+      <div className="absolute bottom-32 sm:bottom-20 left-0 right-0 z-20 flex justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-wrap justify-center gap-3 px-4"
+          className="flex flex-wrap justify-center gap-1 sm:gap-3 max-w-xs sm:max-w-lg px-2"
         >
           {[
-            { icon: <Code className="w-4 h-4" />, text: "C#" },
-            { icon: <Code className="w-4 h-4" />, text: "TypeScript" },
-            { icon: <Code className="w-4 h-4" />, text: "Go" },
-            { icon: <Layers className="w-4 h-4" />, text: "Angular" },
-            { icon: <Smartphone className="w-4 h-4" />, text: "SwiftUI" },
+            { icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" />, text: "C#" },
+            { icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" />, text: "TypeScript" },
+            { icon: <Code className="w-3 h-3 sm:w-4 sm:h-4" />, text: "Go" },
+            { icon: <Layers className="w-3 h-3 sm:w-4 sm:h-4" />, text: "Angular" },
+            { icon: <Smartphone className="w-3 h-3 sm:w-4 sm:h-4" />, text: "SwiftUI" },
           ].map((tech, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 1.1 + index * 0.1 }}
-              className="flex items-center gap-1.5 bg-slate-800/50 dark:bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 dark:border-orange-900/30 rounded-full px-3 py-1.5 text-xs text-blue-100 dark:text-orange-100"
+              className="flex items-center gap-0.5 sm:gap-1.5 bg-slate-800/50 dark:bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 dark:border-orange-900/30 rounded-full px-1.5 sm:px-3 py-0.5 sm:py-1.5 text-xs text-blue-100 dark:text-orange-100"
             >
               {tech.icon}
               <span>{tech.text}</span>
             </motion.div>
-          ))}
+          ))
+          }
         </motion.div>
       </div>
 

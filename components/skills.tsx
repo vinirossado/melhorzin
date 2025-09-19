@@ -120,6 +120,7 @@ const skills: Skill[] = [
 
 export default function Skills() {
   const ref = useRef(null)
+  const detailsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [activeSkill, setActiveSkill] = useState<Skill | null>(null)
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
@@ -136,6 +137,22 @@ export default function Skills() {
   }
   function getSkillDescription(skill: Skill) {
     return t(skill.descriptionKey)
+  }
+
+  // Handle skill click with auto-scroll for both mobile and desktop
+  const handleSkillClick = (skill: Skill) => {
+    setActiveSkill(skill)
+    
+    // Auto-scroll to details panel for better UX
+    if (detailsRef.current) {
+      setTimeout(() => {
+        detailsRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: window.innerWidth < 1024 ? 'start' : 'center',
+          inline: 'nearest'
+        })
+      }, 100)
+    }
   }
 
   useEffect(() => {
@@ -201,9 +218,9 @@ export default function Skills() {
           {t("skills")}
         </motion.h2>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 lg:grid-cols-4">
           {/* Skill hexagon grid */}
-          <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4 ">
+          <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-4 order-2 lg:order-1">
             {skills.sort((a, b) => b.year - a.year)
               .map((skill, index) => (
                 <motion.div
@@ -215,8 +232,12 @@ export default function Skills() {
                     scale: 1.05,
                     boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
                   }}
-                  className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-blue-100 dark:border-slate-700 hover:border-blue-300 dark:hover:border-orange-800 transition-all cursor-pointer"
-                  onClick={() => setActiveSkill(skill)}
+                  className={`bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border transition-all cursor-pointer ${
+                    activeSkill?.nameKey === skill.nameKey 
+                      ? 'border-blue-500 dark:border-orange-500 ring-2 ring-blue-200 dark:ring-orange-200' 
+                      : 'border-blue-100 dark:border-slate-700 hover:border-blue-300 dark:hover:border-orange-800'
+                  }`}
+                  onClick={() => handleSkillClick(skill)}
                   onAnimationComplete={() => index === skills.length - 1 ? setIsLoaded(true) : null}
                 >
                   <div
@@ -268,11 +289,13 @@ export default function Skills() {
 
           {/* Skill details panel */}
           <motion.div
+            ref={detailsRef}
             className="lg:col-span-1
             bg-white/80 dark:bg-slate-800/80
             backdrop-blur-sm rounded-xl p-6 h-full border
             border-blue-100 dark:border-orange-700 
-            sticky top-24"
+            lg:sticky lg:top-24
+            order-1 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -280,6 +303,10 @@ export default function Skills() {
             <h3 className="font-bold text-slate-800 dark:text-white mb-4 text-lg">
               {t("skillDetails")}
             </h3>
+            {/* Mobile hint */}
+            <div className="lg:hidden mb-4 text-xs text-slate-500 dark:text-slate-400 text-center">
+              {!activeSkill && t("clickSkill")}
+            </div>
             {activeSkill ? (
               <motion.div
                 key={activeSkill.nameKey}
@@ -330,7 +357,7 @@ export default function Skills() {
                           href={`https://github.com/vinirossado?tab=repositories&q=&language=${getSkillName(activeSkill)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs text-blue-600 hover:underline flex items-center"
+                          className="text-xs text-orange-500 hover:underline flex items-center"
                         >
                           {t("seeAll")} <ExternalLink size={12} className="ml-1" />
                         </a>
@@ -362,15 +389,16 @@ export default function Skills() {
                             transition={{ duration: 0.3 }}
                             className="bg-gradient-to-br
                              from-white to-blue-50
-                              dark:from-slate-900 dark:to-slate-800
+                              dark:from-slate-800 dark:to-slate-900
                               rounded-lg shadow-sm
                               border border-blue-100
-                            dark:border-slate-700
-                              overflow-hidden hover:shadow-md transition-all"
+                            dark:border-orange-700/30
+                              overflow-hidden hover:shadow-md transition-all
+                              dark:hover:border-orange-600/50"
                           >
                             <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="block p-3">
                               <div className="flex items-start justify-between">
-                                <h6 className="text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors line-clamp-1">
+                                <h6 className="text-sm font-medium text-blue-700 hover:text-blue-800 dark:text-orange-400 dark:hover:text-orange-300 transition-colors line-clamp-1">
                                   {repo.name}
                                 </h6>
                                 <div className="flex items-center text-xs text-slate-500 whitespace-nowrap ml-2">
@@ -380,15 +408,15 @@ export default function Skills() {
                               </div>
 
                               {repo.description && (
-                                <p className="text-xs text-slate-600 mt-1.5 line-clamp-2 min-h-[2rem]">
+                                <p className="text-xs text-slate-600 dark:text-slate-300 mt-1.5 line-clamp-2 min-h-[2rem]">
                                   {repo.description}
                                 </p>
                               )}
 
                               <div className="mt-2 flex items-center justify-between text-xs">
                                 <div className="flex items-center">
-                                  <div className="w-2 h-2 rounded-full bg-blue-500 mr-1.5"></div>
-                                  <span className="text-slate-600">{repo.language || getSkillName(activeSkill)}</span>
+                                  <div className="w-2 h-2 rounded-full bg-blue-500 dark:bg-orange-500 mr-1.5"></div>
+                                  <span className="text-slate-600 dark:text-slate-300">{repo.language || getSkillName(activeSkill)}</span>
                                 </div>
                                 <span className="text-slate-500 text-[10px]">
                                   {new Date(repo.updated_at).toLocaleDateString(undefined, {
@@ -407,20 +435,20 @@ export default function Skills() {
                             href={`https://github.com/vinirossado?tab=repositories&q=&language=${getSkillName(activeSkill)}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block text-center text-xs text-blue-600 hover:text-blue-800 py-2 bg-blue-50 rounded-md border border-blue-100 hover:bg-blue-100 transition-colors"
+                            className="block text-center text-xs text-blue-600 hover:text-blue-800 dark:text-orange-400 dark:hover:text-orange-300 py-2 bg-blue-50 dark:bg-slate-800 rounded-md border border-blue-100 dark:border-orange-700/30 hover:bg-blue-100 dark:hover:bg-slate-700 transition-colors"
                           >
-                            {t("seeMoreRepos").replace("{count}", String(filteredRepos.length - 5))}
+                            {t("seeAllRepos").replace("{count}", String(filteredRepos.length - 5))}
                           </a>
                         )}
                       </div>
                     ) : (
-                      <div className="bg-blue-50/50 rounded-lg p-4 text-center">
-                        <p className="text-sm text-slate-600">{t("noReposFound")}</p>
+                      <div className="bg-blue-50/50 dark:bg-slate-800/50 rounded-lg p-4 text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-300">{t("noReposFound")}</p>
                         <a
                           href={`https://github.com/vinirossado`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-block mt-2 text-xs text-blue-600 hover:underline"
+                          className="inline-block mt-2 text-xs text-blue-600 dark:text-orange-400 hover:underline"
                         >
                           {t("seeAllRepos")}
                         </a>

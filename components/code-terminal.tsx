@@ -31,12 +31,12 @@ export default function CodeTerminal({ codeLines, name, title, yearsOfExperience
                     if (i < currentLine.length) {
                         setTerminalText((prev) => prev + currentLine.charAt(i))
                         i++
-                        timeout = setTimeout(type, Math.random() * 50 + 20)
+                        timeout = setTimeout(type, Math.random() * 10 + 5)
                     } else {
                         setTerminalLines((prev) => [...prev, currentLine])
                         setTerminalText("")
                         setCurrentLineIndex((prev) => prev + 1)
-                        timeout = setTimeout(typeTerminalText, 100)
+                        timeout = setTimeout(typeTerminalText, 30)
                     }
                 }
 
@@ -51,7 +51,7 @@ export default function CodeTerminal({ codeLines, name, title, yearsOfExperience
         // Cursor blinking effect
         const cursorInterval = setInterval(() => {
             setCursorVisible((prev) => !prev)
-        }, 500)
+        }, 400)
 
         return () => {
             clearTimeout(timeout)
