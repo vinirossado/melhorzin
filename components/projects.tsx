@@ -6,6 +6,7 @@ import { useRef, useState } from "react"
 import { ExternalLink, Github, Code, Database } from "lucide-react"
 import { Server } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import ProjectMedia from "@/components/project-media"
 
 const projects = [
   {
@@ -13,6 +14,14 @@ const projects = [
     titleKey: "projectUrlShortenerTitle",
     descriptionKey: "projectUrlShortenerDescription",
     image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif", // Typing/coding GIF
+    demoVideo: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Demo video
+    liveDemo: "https://bit.ly", // Live demo example
+    screenshots: [
+      "https://picsum.photos/800/600?random=1",
+      "https://picsum.photos/800/600?random=2",
+      "https://picsum.photos/800/600?random=3"
+    ],
     tags: ["C#", ".Net", "CosmosDB", "Azure", "Bicep", "PostgreSQL"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/URL-Shortener",
@@ -28,6 +37,14 @@ const projects = [
     titleKey: "projectGcliTitle",
     descriptionKey: "projectGcliDescription",
     image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/L8K62iTDkzGX6/giphy.gif", // Terminal/command line GIF
+    demoVideo: "https://asciinema.org/a/335480", // Real Asciinema example
+    liveDemo: "https://github.com/vinirossado/gcli#installation", // Installation guide
+    screenshots: [
+      "https://picsum.photos/800/600?random=4",
+      "https://picsum.photos/800/600?random=5",
+      "https://picsum.photos/800/600?random=6"
+    ],
     tags: ["Golang", "PostgreSQL", "Mustache", "Cobra", "Gorm", "Docker"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/gcli",
@@ -44,6 +61,15 @@ const projects = [
     titleKey: "projectMtgCardInventoryTitle",
     descriptionKey: "projectMtgCardInventoryDescription",
     image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif", // Mobile app interaction GIF
+    demoVideo: "https://www.youtube.com/watch?v=LXb3EKWsInQ", // iOS app demo video
+    liveDemo: "https://apps.apple.com/app/magic-the-gathering/id1496227521", // MTG app example
+    screenshots: [
+      "https://picsum.photos/400/800?random=7",
+      "https://picsum.photos/400/800?random=8",
+      "https://picsum.photos/400/800?random=9",
+      "https://picsum.photos/400/800?random=10"
+    ],
     tags: ["SwiftUI", "Swift", "PostgreSQL", ".Net"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/MTG-Card-Inventory",
@@ -58,6 +84,14 @@ const projects = [
     titleKey: "projectMtgLifeCounterTitle",
     descriptionKey: "projectMtgLifeCounterDescription",
     image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/3oriNYQX2lC6dfW2Ji/giphy.gif", // Gaming/counter GIF
+    demoVideo: "https://www.youtube.com/watch?v=ZixVqmt2KaU", // Gaming app demo
+    liveDemo: "https://mtglifecounter.com", // Life counter web app example
+    screenshots: [
+      "https://picsum.photos/400/800?random=11",
+      "https://picsum.photos/400/800?random=12",
+      "https://picsum.photos/400/800?random=13"
+    ],
     tags: ["SwiftUI", "Swift", "PostgreSQL", ".Net"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/MTG-LifeCounter",
@@ -72,6 +106,15 @@ const projects = [
     titleKey: "projectGcliAdvancedTemplateTitle",
     descriptionKey: "projectGcliAdvancedTemplateDescription",
     image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif", // Developer workflow GIF
+    demoVideo: "https://www.youtube.com/watch?v=Uszj_k0DGsg", // Development tutorial
+    liveDemo: "https://github.com/vinirossado/gcli-advanced-template#usage", // Usage guide
+    screenshots: [
+      "https://picsum.photos/800/600?random=14",
+      "https://picsum.photos/800/600?random=15",
+      "https://picsum.photos/800/600?random=16",
+      "https://picsum.photos/800/600?random=17"
+    ],
     tags: ["Go", "Gorm", "Zap", "Swagger", "JWT", "Docker"],
     liveUrl: "#",
     githubUrl: "https://github.com/vinirossado/gcli-advanced-template",
@@ -87,9 +130,17 @@ const projects = [
     titleKey: "projectPortfolioWebsiteTitle",
     descriptionKey: "projectPortfolioWebsiteDescription",
     image: "/placeholder.svg?height=600&width=800",
-    tags: ["Next.Js", "React", "Framer Motion", "Tailwind CSS"],
-    liveUrl: "rossado.melhorzin.com",
-    githubUrl: "#",
+    demoGif: "https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif", // Web development GIF
+    demoVideo: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Example YouTube video
+    liveDemo: "https://vinirossado.vercel.app", // Current portfolio
+    screenshots: [
+      "https://picsum.photos/800/600?random=18",
+      "https://picsum.photos/800/600?random=19", 
+      "https://picsum.photos/800/600?random=20"
+    ],
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    liveUrl: "https://vinirossado.vercel.app",
+    githubUrl: "https://github.com/vinirossado/melhorzin",
     featureKeys: [
       "projectPortfolioWebsiteFeature1",
       "projectPortfolioWebsiteFeature2",
@@ -138,18 +189,33 @@ export default function Projects() {
                overflow-hidden shadow-lg hover:shadow-xl transition-all
                duration-300
                border border-slate-100 dark:border-slate-700
-               group"
+               group h-full flex flex-col"
               onMouseEnter={() => setActiveProject(index)}
               onMouseLeave={() => setActiveProject(null)}
             >
-              <div className="relative h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative h-56 overflow-hidden">
+                {/* Only show overlay for fallback images, not for media content */}
+                {!project.demoGif && !project.demoVideo && !project.screenshots?.length && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                )}
 
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={t(project.titleKey)}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                {/* Use ProjectMedia component for better project showcases */}
+                <ProjectMedia
+                  demoGif={project.demoGif}
+                  demoVideo={project.demoVideo}
+                  liveDemo={project.liveDemo}
+                  screenshots={project.screenshots}
+                  title={t(project.titleKey)}
                 />
+
+                {/* Fallback to static image if no media */}
+                {!project.demoGif && !project.demoVideo && !project.screenshots?.length && (
+                  <img
+                    src={project.image || "/placeholder.svg"}
+                    alt={t(project.titleKey)}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                )}
 
                 {/* Overlay tech icons */}
                 <div className="absolute top-4 right-4 z-20">
@@ -187,17 +253,8 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Project links */}
+                {/* Project links - only show GitHub, demo handled by ProjectMedia */}
                 <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
-                  <a
-                    href={project.liveUrl}
-                    className="flex items-center gap-1 text-sm text-white bg-blue-600/90 hover:bg-blue-600 px-3 py-1.5 rounded-full backdrop-blur-sm"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink size={14} />
-                    <span>{t("liveDemo")}</span>
-                  </a>
                   <a
                     href={project.githubUrl}
                     className="flex items-center gap-1 text-sm text-white bg-slate-800/90 hover:bg-slate-800 px-3 py-1.5 rounded-full backdrop-blur-sm"
@@ -205,18 +262,18 @@ export default function Projects() {
                     rel="noopener noreferrer"
                   >
                     <Github size={14} />
-                    <span>{t("github")}</span>
+                    <span>{t("viewOnGithub")}</span>
                   </a>
                 </div>
               </div>
 
-              <div className="p-6">
+              <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-orange-500 transition-colors">
                   {t(project.titleKey)}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-200 mb-4 text-sm">{t(project.descriptionKey)}</p>
+                <p className="text-slate-600 dark:text-slate-200 mb-4 text-sm flex-shrink-0">{t(project.descriptionKey)}</p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
                   {project.tags.map((tag) => (
                     <span key={tag} className="px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-orange-400 text-xs rounded-full">
                       {tag}
@@ -225,9 +282,9 @@ export default function Projects() {
                 </div>
 
                 {/* Features list */}
-                <div className="mt-4 space-y-2">
+                <div className="mt-auto space-y-2">
                   <h4 className="text-sm font-medium text-slate-700 dark:text-slate-100">{t("mainFeatures")}</h4>
-                  <ul className="grid grid-cols-2 gap-x-2 gap-y-1">
+                  <ul className="grid grid-cols-2 gap-x-2 gap-y-1 mb-4">
                     {project.featureKeys.map((featureKey, i) => (
                       <li key={i} className="text-xs text-slate-600 dark:text-slate-300 flex items-center gap-1">
                         <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-orange-500 shrink-0"></div>
@@ -235,6 +292,30 @@ export default function Projects() {
                       </li>
                     ))}
                   </ul>
+
+                  {/* Media action buttons */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.liveDemo && (
+                      <a
+                        href={project.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 dark:bg-orange-600 dark:hover:bg-orange-700 text-white text-xs rounded-lg font-medium transition-colors"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        {t("liveDemo")}
+                      </a>
+                    )}
+                    
+                    {project.demoVideo && (
+                      <button className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-600 hover:bg-slate-700 text-white text-xs rounded-lg font-medium transition-colors">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                        </svg>
+                        {t("watchVideo")}
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
