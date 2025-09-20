@@ -131,6 +131,32 @@ const translations = {
     projectPortfolioWebsiteFeature2: "Design responsivo",
     projectPortfolioWebsiteFeature3: "Modo escuro",
     projectPortfolioWebsiteFeature4: "Formulário de contato",
+    // New Projects
+    projectTravelAppTitle: "Travel App",
+    projectTravelAppDescription: "Aplicativo completo para planejamento e gerenciamento de viagens, com recursos de itinerário inteligente e compartilhamento de experiências.",
+    projectTravelAppFeature1: "Planejamento de itinerários inteligente",
+    projectTravelAppFeature2: "Compartilhamento e colaboração em grupo",
+    projectTravelAppFeature3: "Compartilhamento de experiências",
+    projectTravelAppFeature4: "Desafios de viagem gamificados",
+    projectTravelAppFeature5: "Modo offline",
+
+    projectSparkTrackerTitle: "Spark Tracker",
+    projectSparkTrackerDescription: "Contador de vida avançado para Magic: The Gathering com suporte multiplayer, estatísticas detalhadas e personalização completa.",
+    projectSparkTrackerFeature1: "Contador de vida para até 6 jogadores",
+    projectSparkTrackerFeature2: "Rastreamento de dano de comandante",
+    projectSparkTrackerFeature3: "Rastreamento de contadores e veneno",
+    projectSparkTrackerFeature4: "Temas personalizáveis e modo escuro",
+    projectSparkTrackerFeature5: "Suporte a iPad com interface otimizada",
+
+    projectCookbookProTitle: "Cookbook Pro",
+    projectCookbookProDescription: "Plataforma completa para descobrir, organizar e compartilhar receitas culinárias com recursos inteligentes de planejamento de refeições.",
+    projectCookbookProFeature1: "Biblioteca de receitas com busca avançada",
+    projectCookbookProFeature2: "Planejador de refeições semanal",
+    projectCookbookProFeature3: "Lista de compras automática",
+    projectCookbookProFeature4: "Compartilhamento de receitas favoritas",
+    projectCookbookProFeature5: "Calculadora nutricional integrada",
+    projectCookbookProFeature6: "Integração com Apple Watch",
+
     contact: "Entre em Contato",
     viewWork: "Conheça meu trabalho",
     contactMe: "Entre em contato",
@@ -193,8 +219,7 @@ const translations = {
     viewScreenshots: "Ver Capturas",
     projectGallery: "Galeria do Projeto",
     demoPreview: "Prévia da Demo",
-          fullDemo: "Demo Completo",
-      imageOf: "{current} de {total}",
+    fullDemo: "Demo Completo",
     openInNewTab: "Abrir em Nova Aba",
     viewOnGithub: "Ver no GitHub",
     techStack: "Stack Técnica",
@@ -332,6 +357,32 @@ const translations = {
     projectPortfolioWebsiteFeature2: "Responsive design",
     projectPortfolioWebsiteFeature3: "Dark mode",
     projectPortfolioWebsiteFeature4: "Contact form",
+
+    projectTravelAppTitle: "Travel App",
+    projectTravelAppDescription: "Complete travel planning and management app with smart itinerary features and experience sharing capabilities.",
+    projectTravelAppFeature1: "Smart itinerary planning",
+    projectTravelAppFeature2: "Group sharing and collaboration",
+    projectTravelAppFeature3: "Experience sharing platform",
+    projectTravelAppFeature4: "Gamified travel challenges",
+    projectTravelAppFeature5: "Offline mode",
+
+    projectSparkTrackerTitle: "Spark Tracker",
+    projectSparkTrackerDescription: "Advanced life counter for Magic: The Gathering with multiplayer support, detailed statistics and complete customization.",
+    projectSparkTrackerFeature1: "Life counter for up to 6 players",
+    projectSparkTrackerFeature2: "Commander damage tracking",
+    projectSparkTrackerFeature3: "Counters and poison tracking",
+    projectSparkTrackerFeature4: "Customizable themes and dark mode",
+    projectSparkTrackerFeature5: "iPad support with optimized interface",
+
+    projectCookbookProTitle: "Cookbook Pro",
+    projectCookbookProDescription: "Complete platform for discovering, organizing and sharing culinary recipes with intelligent meal planning features.",
+    projectCookbookProFeature1: "Recipe library with advanced search",
+    projectCookbookProFeature2: "Weekly meal planner",
+    projectCookbookProFeature3: "Automatic shopping lists",
+    projectCookbookProFeature4: "Favorite recipe sharing",
+    projectCookbookProFeature5: "Integrated nutrition calculator",
+    projectCookbookProFeature6: "Apple Watch Integration",
+
     contact: "Contact Me",
     viewWork: "View my work",
     contactMe: "Contact me",
@@ -551,7 +602,6 @@ const translations = {
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("en")
 

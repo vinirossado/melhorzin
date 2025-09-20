@@ -11,6 +11,82 @@ import ProjectMedia from "@/components/project-media"
 const projects = [
   {
     id: crypto.randomUUID(),
+    titleKey: "projectTravelAppTitle",
+    descriptionKey: "projectTravelAppDescription",
+    image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", // Travel/mobile app GIF
+    demoVideo: "https://www.youtube.com/watch?v=LXb3EKWsInQ", // Travel app demo
+    liveDemo: "https://apps.apple.com/app/travel-planner/example", // App store example
+    screenshots: [
+      "https://picsum.photos/400/800?random=21",
+      "https://picsum.photos/400/800?random=22",
+      "https://picsum.photos/400/800?random=23",
+      "https://picsum.photos/400/800?random=24"
+    ],
+    tags: ["Swift", "SwiftUI", "Alamofire", "iOS", "Swift Data", ".Net", "PostgreSQL"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/vinirossado/travel-app",
+    featureKeys: [
+      "projectTravelAppFeature1",
+      "projectTravelAppFeature2",
+      "projectTravelAppFeature3",
+      "projectTravelAppFeature4",
+      "projectTravelAppFeature5",
+    ],
+  },
+  {
+    id: crypto.randomUUID(),
+    titleKey: "projectSparkTrackerTitle",
+    descriptionKey: "projectSparkTrackerDescription",
+    image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/3oriNYQX2lC6dfW2Ji/giphy.gif", // Gaming/MTG themed GIF
+    demoVideo: "https://www.youtube.com/watch?v=ZixVqmt2KaU", // MTG app demo
+    liveDemo: "https://apps.apple.com/app/mtg-life-counter/example", // Life counter app example
+    screenshots: [
+      "https://picsum.photos/400/800?random=25",
+      "https://picsum.photos/400/800?random=26",
+      "https://picsum.photos/400/800?random=27",
+      "https://picsum.photos/400/800?random=28"
+    ],
+    tags: ["Swift", "SwiftUI", "iOS", "iPad", "Alamofire", "Swift Data", ".Net", "PostgreSQL"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/vinirossado/spark-tracker",
+    featureKeys: [
+      "projectSparkTrackerFeature1",
+      "projectSparkTrackerFeature2",
+      "projectSparkTrackerFeature3",
+      "projectSparkTrackerFeature4",
+      "projectSparkTrackerFeature5",
+    ],
+  },
+  {
+    id: crypto.randomUUID(),
+    titleKey: "projectCookbookProTitle",
+    descriptionKey: "projectCookbookProDescription",
+    image: "/placeholder.svg?height=600&width=800",
+    demoGif: "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif", // Cooking/recipe app GIF
+    demoVideo: "https://www.youtube.com/watch?v=LXb3EKWsInQ", // Recipe app demo
+    liveDemo: "https://apps.apple.com/app/cookbook-recipes/example", // Recipe app example
+    screenshots: [
+      "https://picsum.photos/400/800?random=29",
+      "https://picsum.photos/400/800?random=30",
+      "https://picsum.photos/400/800?random=31",
+      "https://picsum.photos/400/800?random=32"
+    ],
+    tags: ["Swift", "SwiftUI", "Alamofire", "iOS", "Swift Data", ".Net", "PostgreSQL"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/vinirossado/cookbook-pro",
+    featureKeys: [
+      "projectCookbookProFeature1",
+      "projectCookbookProFeature2",
+      "projectCookbookProFeature3",
+      "projectCookbookProFeature4",
+      "projectCookbookProFeature5",
+      "projectCookbookProFeature6"
+    ],
+  },
+  {
+    id: crypto.randomUUID(),
     titleKey: "projectUrlShortenerTitle",
     descriptionKey: "projectUrlShortenerDescription",
     image: "/placeholder.svg?height=600&width=800",

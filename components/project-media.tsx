@@ -13,7 +13,6 @@ interface ProjectMediaProps {
   title: string
 }
 
-// GIF Preview Component
 export function GifPreview({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
@@ -45,7 +44,6 @@ export function GifPreview({ src, alt, className = "" }: { src: string; alt: str
         />
       )}
       
-      {/* Play indicator overlay */}
       {!isLoading && !hasError && (
         <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center group-hover:opacity-100">
           <div className="bg-black/50 rounded-full p-3">
@@ -57,7 +55,6 @@ export function GifPreview({ src, alt, className = "" }: { src: string; alt: str
   )
 }
 
-// Video Player Component
 export function VideoPlayer({ 
   videoUrl, 
   thumbnailUrl, 
@@ -70,7 +67,6 @@ export function VideoPlayer({
   const [isPlaying, setIsPlaying] = useState(false)
   const { t } = useLanguage()
 
-  // Handle different video types (YouTube, Vimeo, Asciinema, direct MP4)
   const getEmbedUrl = (url: string) => {
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
       const videoId = url.includes('youtu.be') 
@@ -149,7 +145,6 @@ export function ScreenshotGallery({
 
   return (
     <>
-      {/* Gallery Preview */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
         {screenshots.slice(0, 6).map((screenshot, index) => (
           <div
@@ -171,7 +166,6 @@ export function ScreenshotGallery({
               <Maximize2 className="w-4 h-4 text-white" />
             </div>
             
-            {/* Show remaining count on last visible image */}
             {index === 5 && screenshots.length > 6 && (
               <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
                 <span className="text-white text-lg font-semibold">
@@ -247,7 +241,6 @@ export function ScreenshotGallery({
   )
 }
 
-// Main Project Media Component for cards
 export default function ProjectMedia({ 
   demoGif, 
   demoVideo, 
@@ -257,9 +250,7 @@ export default function ProjectMedia({
 }: ProjectMediaProps) {
   const { t } = useLanguage()
 
-  // For project cards, show a simple preview with the best available media
   const renderCardPreview = () => {
-    // Priority: demoGif > first screenshot > placeholder
     if (demoGif) {
       return (
         <div className="relative w-full h-full group cursor-pointer">
