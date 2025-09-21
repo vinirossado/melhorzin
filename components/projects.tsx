@@ -38,8 +38,8 @@ const projects = [
     id: crypto.randomUUID(),
     titleKey: "projectSparkTrackerTitle",
     descriptionKey: "projectSparkTrackerDescription",
-    image: "/placeholder.svg?height=600&width=800",
-    demoGif: "https://media.giphy.com/media/3oriNYQX2lC6dfW2Ji/giphy.gif", // Gaming/MTG themed GIF
+    image: "/SparkTracker.gif",
+    demoGif: "/SparkTracker.gif", // SparkTracker project demo GIF
     demoVideo: "https://www.youtube.com/watch?v=ZixVqmt2KaU", // MTG app demo
     liveDemo: "https://apps.apple.com/app/mtg-life-counter/example", // Life counter app example
     screenshots: [
@@ -153,28 +153,6 @@ const projects = [
       "projectMtgCardInventoryFeature1",
       "projectMtgCardInventoryFeature2",
       "projectMtgCardInventoryFeature3",
-    ],
-  },
-  {
-    id: crypto.randomUUID(),
-    titleKey: "projectMtgLifeCounterTitle",
-    descriptionKey: "projectMtgLifeCounterDescription",
-    image: "/placeholder.svg?height=600&width=800",
-    demoGif: "https://media.giphy.com/media/3oriNYQX2lC6dfW2Ji/giphy.gif", // Gaming/counter GIF
-    demoVideo: "https://www.youtube.com/watch?v=ZixVqmt2KaU", // Gaming app demo
-    liveDemo: "https://mtglifecounter.com", // Life counter web app example
-    screenshots: [
-      "https://picsum.photos/400/800?random=11",
-      "https://picsum.photos/400/800?random=12",
-      "https://picsum.photos/400/800?random=13"
-    ],
-    tags: ["SwiftUI", "Swift", "PostgreSQL", ".Net"],
-    liveUrl: "#",
-    githubUrl: "https://github.com/vinirossado/MTG-LifeCounter",
-    featureKeys: [
-      "projectMtgLifeCounterFeature1",
-      "projectMtgLifeCounterFeature2",
-      "projectMtgLifeCounterFeature3",
     ],
   },
   {
