@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Play, Pause, ExternalLink, X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
@@ -16,40 +16,70 @@ interface ProjectMediaProps {
 export function GifPreview({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
+  const [imgSrc, setImgSrc] = useState<string>("")
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  // Preload image to prevent blinking
+  React.useEffect(() => {
+    if (!src) return
+
+    const img = new Image()
+    img.onload = () => {
+      setImgSrc(src)
+      setIsLoading(false)
+      setHasError(false)
+    }
+    img.onerror = () => {
+      setIsLoading(false)
+      setHasError(true)
+    }
+    
+    // Add cache busting only if absolutely necessary
+    img.src = src
+    
+    return () => {
+      img.onload = null
+      img.onerror = null
+    }
+  }, [src])
 
   return (
-    <div className={`relative overflow-hidden rounded-lg ${className}`}>
+    <div className={`relative overflow-hidden rounded-lg bg-slate-200 dark:bg-slate-700 ${className}`} style={{ minHeight: '200px' }}>
       {isLoading && (
-        <div className="absolute inset-0 bg-slate-200 dark:bg-slate-700 animate-pulse flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
       
       {hasError ? (
-        <div className="absolute inset-0 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-slate-500 dark:text-slate-400">
             <div className="text-sm">Failed to load preview</div>
           </div>
         </div>
-      ) : (
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-full object-cover"
-          onLoad={() => setIsLoading(false)}
-          onError={() => {
-            setIsLoading(false)
-            setHasError(true)
-          }}
-        />
-      )}
-      
-      {!isLoading && !hasError && (
-        <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center group-hover:opacity-100">
-          <div className="bg-black/50 rounded-full p-3">
-            <Play className="w-6 h-6 text-white" fill="white" />
-          </div>
-        </div>
+      ) : imgSrc && (
+        <>
+          <img
+            ref={imgRef}
+            src={imgSrc}
+            alt={alt}
+            className="w-full h-full object-cover transition-opacity duration-300"
+            style={{ 
+              opacity: isLoading ? 0 : 1,
+              display: 'block' // Prevent layout shift
+            }}
+            loading="eager" // Load immediately for above-the-fold content
+            decoding="async" // Non-blocking decode
+          />
+          
+          {!isLoading && (
+            <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center group-hover:opacity-100">
+              <div className="bg-black/50 rounded-full p-3">
+                <Play className="w-6 h-6 text-white" fill="white" />
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   )
@@ -249,6 +279,7 @@ export default function ProjectMedia({
   title 
 }: ProjectMediaProps) {
   const { t } = useLanguage()
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   const renderCardPreview = () => {
     if (demoGif) {
@@ -262,12 +293,23 @@ export default function ProjectMedia({
     if (screenshots.length > 0) {
       return (
         <div className="relative w-full h-full">
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-slate-200 dark:bg-slate-700 animate-pulse flex items-center justify-center">
+              <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
           <img
             src={screenshots[0]}
             alt={`${title} screenshot`}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageLoaded(true)}
+            loading="lazy" // Lazy load for screenshots below the fold
+            decoding="async"
           />
-          {screenshots.length > 1 && (
+          {screenshots.length > 1 && imageLoaded && (
             <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
               +{screenshots.length - 1}
             </div>
