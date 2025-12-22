@@ -41,7 +41,7 @@ const projects = [
     image: "/SparkTracker.gif",
     demoGif: "/SparkTracker.gif", // SparkTracker project demo GIF
     demoVideo: "https://www.youtube.com/watch?v=ZixVqmt2KaU", // MTG app demo
-    liveDemo: "https://apps.apple.com/app/mtg-life-counter/example", // Life counter app example
+    liveDemo: "https://apps.apple.covbm/app/mtg-life-counter/example", // Life counter app example
     screenshots: [
       "https://picsum.photos/400/800?random=25",
       "https://picsum.photos/400/800?random=26",
